@@ -64,7 +64,6 @@ public final class App {
         List<WebElement> lbel=date.findElements(By.xpath("//*[@class='css-1r65cup']/input"));
         int c=0;
         boolean flag=true;
-        System.out.println(cdate_str);
         for ( WebElement i : lbel ) {
             String d=i.getAttribute("value");
             if(d.equals(cdate_str)){
@@ -76,7 +75,6 @@ public final class App {
             }
             c++;
          }
-         System.out.println(flag);
          if(flag==false){
             while(true){
                 c=0;
@@ -107,7 +105,6 @@ public final class App {
          SimpleDateFormat formatter = new SimpleDateFormat("MM");
          String Month = formatter.format(cdate);
          Month=Integer.toString((Integer.valueOf(Month))+1);
-         System.out.println(Month);
          if(Integer.parseInt(Month)==12){
             StringBuilder string = new StringBuilder(edate_str);
             string.setCharAt(5,'0');
@@ -131,7 +128,6 @@ public final class App {
         lbel=date.findElements(By.xpath("//*[@class='css-1r65cup']/input"));
         c=0;
         flag=true;
-        System.out.println(edate_str);
         for ( WebElement i : lbel ) {
             String d=i.getAttribute("value");
             if(d.equals(edate_str)){
@@ -179,7 +175,6 @@ public final class App {
         int ftime=0;
         driver.findElement(By.id("menu-button-39")).click();
         Thread.sleep(3000);
-        System.out.println(stime);
         if(stime==12){
             ftime=1;
             Thread.sleep(3000);
@@ -414,8 +409,9 @@ public final class App {
 		WebDriver driver = new ChromeDriver(options);
         driver.get("https://timeline.edvora.me/");
         Thread.sleep(3000);
+        System.out.println("Creating Event");
         if(driver.getCurrentUrl().equals("https://main.edvora.me/l")){
-            driver.findElement(By.id("username")).sendKeys("automation");
+            driver.findElement(By.id("username")).sendKeys("test");
             driver.findElement(By.id("password")).sendKeys("Hello@123");
             driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/button")).click();
             driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/button")).click();
@@ -443,6 +439,7 @@ public final class App {
        save_event_dt();
         driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[3]/div[2]/div[2]/div/button[2]")).click();
 
+        System.out.println("Event Created successfully\n\nVerifing created event");
         verify_event(driver);
     }
 }

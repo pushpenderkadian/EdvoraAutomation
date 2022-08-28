@@ -64,7 +64,6 @@ public final class s2 {
         List<WebElement> lbel=date.findElements(By.xpath("//*[@class='css-1r65cup']/input"));
         int c=0;
         boolean flag=true;
-        System.out.println(cdate_str);
         for ( WebElement i : lbel ) {
             String d=i.getAttribute("value");
             c++;
@@ -106,7 +105,6 @@ public final class s2 {
          SimpleDateFormat formatter = new SimpleDateFormat("MM");
          String Month = formatter.format(cdate);
          Month=Integer.toString((Integer.valueOf(Month))+1);
-         System.out.println(Month);
          if(Integer.parseInt(Month)==12){
             StringBuilder string = new StringBuilder(edate_str);
             string.setCharAt(5,'0');
@@ -130,7 +128,6 @@ public final class s2 {
         lbel=date.findElements(By.xpath("//*[@class='css-1r65cup']/input"));
         c=0;
         flag=true;
-        System.out.println(edate_str);
         for ( WebElement i : lbel ) {
             String d=i.getAttribute("value");
             c++;
@@ -176,7 +173,6 @@ public final class s2 {
         int ftime=0;
         driver.findElement(By.id("menu-button-39")).click();
         Thread.sleep(3000);
-        System.out.println(stime);
         if(stime==12){
             ftime=1;
             Thread.sleep(3000);
@@ -381,7 +377,6 @@ public final class s2 {
                 dates.get(x).click();
             }
          if(lbel.get(x).getAttribute("value").equals(eedat)){
-            System.out.println("done"+lbel.get(x).getAttribute("value")+"\n"+eedat);
             break;
             
          }
@@ -428,49 +423,52 @@ public final class s2 {
 		WebDriverManager.chromedriver().setup();
         //setting up driver with dynamic chrome driver
 		WebDriver driver = new ChromeDriver(options);
-        // driver.get("https://timeline.edvora.me/");
-        // Thread.sleep(3000);
-        // if(driver.getCurrentUrl().equals("https://main.edvora.me/l")){
-        //     driver.findElement(By.id("username")).sendKeys("automation_test");
-        //     driver.findElement(By.id("password")).sendKeys("Hello@123");
-        //     driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/button")).click();
-        //     driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/button")).click();
-        //     Thread.sleep(5000);
-        // }
-        // if(driver.getCurrentUrl().equals("https://classrooms.edvora.me/")){
-        //     driver.get("https://timeline.edvora.me/");
-        // }
-        // Thread.sleep(3000);
-        // driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/div[1]/div[2]/div/div[1]/div[2]/a/button")).click();
-        // Thread.sleep(5000);
-        // set_title(driver);
-
-        // //set classroom
-        // driver.findElement(By.id("menu-button-15")).click();
-        // Thread.sleep(1000);
-        // driver.findElement(By.id("menu-list-15-menuitem-13")).click();
-
-        // //type of event
-        // //daily event
-        // Robot r=new Robot();
-        // r.mouseMove(driver.manage().window().getPosition().getX(),driver.manage().window().getPosition().getY());
-        // r.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        // r.mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        driver.get("https://timeline.edvora.me/");
+        Thread.sleep(3000);
         
-        // Thread.sleep(1000);
-        // driver.findElement(By.id("menu-button-37")).click();
-        // driver.findElement(By.id("menu-list-37-menuitem-30")).click();
+        System.out.println("Creating Event");
+        if(driver.getCurrentUrl().equals("https://main.edvora.me/l")){
+            driver.findElement(By.id("username")).sendKeys("automation_test");
+            driver.findElement(By.id("password")).sendKeys("Hello@123");
+            driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/button")).click();
+            driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/button")).click();
+            Thread.sleep(5000);
+        }
+        if(driver.getCurrentUrl().equals("https://classrooms.edvora.me/")){
+            driver.get("https://timeline.edvora.me/");
+        }
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/div[1]/div[2]/div/div[1]/div[2]/a/button")).click();
+        Thread.sleep(5000);
+        set_title(driver);
 
-        // // time section : 
+        //set classroom
+        driver.findElement(By.id("menu-button-15")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.id("menu-list-15-menuitem-13")).click();
 
-        // set_time(driver);
+        //type of event
+        //daily event
+        Robot r=new Robot();
+        r.mouseMove(driver.manage().window().getPosition().getX(),driver.manage().window().getPosition().getY());
+        r.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        r.mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         
-        // //date:-
+        Thread.sleep(1000);
+        driver.findElement(By.id("menu-button-37")).click();
+        driver.findElement(By.id("menu-list-37-menuitem-30")).click();
+
+        // time section : 
+
+        set_time(driver);
+        
+        //date:-
          
-        // set_date(driver);
+        set_date(driver);
        
-        // driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[3]/div[2]/div[2]/div/button[2]")).click();
-        // save_event_dt();
+        driver.findElement(By.xpath("//*[@id='__next']/div/main/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[3]/div[2]/div[2]/div/button[2]")).click();
+        save_event_dt();
+        System.out.println("Event Created successfully\n\nVerifing created event");
         verify_event(driver);
     }
 }
